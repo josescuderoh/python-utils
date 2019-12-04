@@ -12,7 +12,8 @@ This repo (under construction) contains a script with a series useful functions 
 
 * (...)
 
-# Project Utils
+
+# Python Project Utils
 
 Based on the 4D Development process, I have outlined a useful guide of how a DS pipeline would look like from beginning to end, with specific Python code to be used in every step of the process (when it's needed). Those steps are contained in the file [4D_Pipe](4D_Pipe.ipynb) containing the following:
 
