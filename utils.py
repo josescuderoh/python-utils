@@ -17,12 +17,19 @@ def fix_names(names):
 
     return fixed_names
 
-def break_string(string):
+def break_string(string, sep=' '):
     """
-    Take one string and break it into a list of elements given the spaces inside the string.
+    Take one string and breaks it into a list of elements using the sep inside the string.
+
+    string: string to break apart
+    sep: separator (default: space)
+
     Example:
 
     >>> break_string('RA RA FZFG BR')
+    {'RA': 2, 'FZFG': 1, 'BR': 1}
+
+    >>> break_string('RA, RA, FZFG, BR', sep=',')
     {'RA': 2, 'FZFG': 1, 'BR': 1}
     """
 
@@ -31,8 +38,8 @@ def break_string(string):
 
     if string.strip() != '':
         sym_count = defaultdict(int)
-        for sym in re.split('\s+', string.strip()):
-            sym_count[sym] += 1
+        for sym in re.split(''.join([sep, '+']) , string.strip()):
+            sym_count[sym.strip()] += 1
     else:
         sym_count = {}
 
