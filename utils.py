@@ -1,17 +1,21 @@
 def fix_names(names):
-  """This function takes a list of column names and standardizes the names
-  for Python analysis returning a list of fixed names
+    """
+    This function takes a list of names and standardizes the names
+    for Python analysis returning a list of fixed names to be used in
+    the dataframe.
 
-  >>> fix_names(['New Col 1', 'NeW. Col. 2'])
-  ['new_col_1', 'new_col_2']
+    names: list of strings to be fixed
 
-  """
-  import re
+    >>> fix_names(['New Col 1', 'NeW. Col. 2_'])
+    ['new_col_1', 'new_col_2']
 
-  fixed_names = [name.lower().strip().replace(' ','_') for name in names]
-  fixed_names = [re.sub(r'[^\w_]', '', name) for name in fixed_names]
+    """
+    import re
 
-  return fixed_names
+    fixed_names = [name.lower().replace(' ','_').strip('_') for name in names]
+    fixed_names = [re.sub(r'[^\w_]', '', name) for name in fixed_names]
+
+    return fixed_names
 
 def break_string(string):
     """
