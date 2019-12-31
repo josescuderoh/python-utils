@@ -82,8 +82,37 @@ def get_previous_quantity(df, q='units', date='date'):
 
     return df
 
+def flag_holiday(day, country, prov=None):
+    """Return a flag if the day given is a holiday according to country, province and years in the
+    format required by the holidays package.
+
+    day: datetime object with with the day that needs to be queried.
+    country: ISO 3166 code for the country.
+    prov: ISO 3166-2 code for the province/state
+
+    >>> import datetime
+    >>> day1 = datetime.datetime.strptime('2017-12-26', '%Y-%m-%d')
+    >>> flag_holiday(day1, 'CA', 'ON')
+    1
+    >>> day2 = datetime.datetime.strptime('2019-07-04', '%Y-%m-%d')
+    >>> flag_holiday(day2, 'US')
+    1
+
+    """
+
+    import holidays
+
+    #Get datetimes
+    holidays_list = list(holidays.CountryHoliday(country=country, years=day.year, prov=prov).keys())
+    # Format as strings
+    holidays_dates = [day.strftime('%Y-%m-%d') for day in holidays_list]
+    # Compare
+    flag = day.strftime('%Y-%m-%d') in holidays_dates
+    return int(flag)
+
 if __name__ == '__main__':
   import doctest
   doctest.run_docstring_examples(fix_names, globals())
   doctest.run_docstring_examples(break_string, globals())
   doctest.run_docstring_examples(get_previous_quantity, globals())
+  doctest.run_docstring_examples(flag_holiday, globals())

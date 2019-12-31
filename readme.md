@@ -8,4 +8,6 @@ This repo (under construction) contains a script with a series useful functions 
 
 * `get_previous_quantity()`: Takes a dataframe with a datetime column and a numerical quantity column and appends a new column with the quantity for the previous day for each row. If there were no quantities the day before, it returns zero.
 
+* `flag_holiday()`: Takes a datetime object and returns a flag if the day given is a holiday according to country, province and year given as required by the holidays package.
+
 * (...)
